@@ -1,0 +1,44 @@
+<body id="grad">
+  <div id="wrapper">
+    <div id="imgwrapper">
+      <img src="/assets/logo.png">
+    </div>
+    <div *ngIf="alreadyGuessed == false"> 
+        <br>
+        <br>
+        <br>
+        <p>Enter your guess below, and press the button! </p>
+        <input type ="text" [formControl]="newGuess">
+        <button (click)="calcScore()">Guess it!</button>
+      </div>
+      <div [style.visibility]="(alreadyGuessed == false) ? 'hidden' : 'visible' ">
+        <br>
+        <br>
+        <h2> Your score: {{userScore}}</h2>
+        <div *ngIf="alreadySubmitted == false">
+          <p> Enter your name to save your score! </p>
+          <input type ="text" [formControl]="userName">
+          <button (click)="processPlayer()">Submit Score</button>
+        </div>
+
+        <br>
+        <br>
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let player; let i = index;"> {{i+1}} </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Player Name</mat-header-cell>
+            <mat-cell *matCellDef="let player">{{player.name}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="score">
+            <mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+            <mat-cell *matCellDef="let player">{{player.score}}</mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="leaderboardTableColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: leaderboardTableColumns"></mat-row>
+        </mat-table>
+      </div>
+    </div>
+  </body>

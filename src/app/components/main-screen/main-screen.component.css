@@ -1,0 +1,14 @@
+
+#wrapper{
+  width: 70%;
+  margin: 0 auto;
+}
+
+#imgwrapper{
+  width: 70%;
+  margin:0 auto;
+}
+
+#grad {
+  background-image: linear-gradient(#b3b3ff, #ffffff);
+}
